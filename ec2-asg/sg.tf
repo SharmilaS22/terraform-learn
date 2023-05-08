@@ -16,6 +16,7 @@ resource "aws_security_group" "sh_sg" {
     }
   }
 
+# egress = [{}, {}] //define multiple by this
   egress {
     from_port   = 0
     to_port     = 0

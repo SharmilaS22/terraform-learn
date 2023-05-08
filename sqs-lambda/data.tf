@@ -15,9 +15,12 @@ data "aws_iam_policy_document" "sh_sqs_policy" {
     }
 
     actions = [
-      "sqs:SendMessage",
-      "sqs:ReceiveMessage"
+      "sqs:*"
     ]
+      # "sqs:SendMessage",
+      # "sqs:ReceiveMessage"
+      # "sqs:DeleteMessage"
+      # "sqs:GetQueueAttributes"
     resources = [
       aws_sqs_queue.sh_queue.arn
     ]
