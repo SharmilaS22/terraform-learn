@@ -23,7 +23,7 @@ data "aws_iam_policy_document" "sh_sqs_policy" {
 
     # not_actions, not_principals, not_resources
     # ↓→ means -> except this allow all
-  
+
     condition {
       test     = "ArnEquals"
       variable = "aws:SourceArn"

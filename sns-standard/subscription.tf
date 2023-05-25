@@ -9,7 +9,7 @@ resource "aws_sns_topic_subscription" "sns_for_sms" {
   # topic_arn, protocol, endpoint -> are required
   topic_arn = aws_sns_topic.sh_sns.arn
   protocol  = "sms"
-  endpoint  = "phonenumber"
+  endpoint  = "+919999999999"
 }
 
 resource "aws_sns_topic_subscription" "sns_for_email" {
