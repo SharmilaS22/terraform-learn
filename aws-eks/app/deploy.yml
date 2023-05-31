@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sh-helloworld
+spec:
+  selector:
+    matchLabels:
+      app: sh-helloworld
+  template:
+    metadata:
+      labels:
+        app: sh-helloworld
+    spec:
+      containers:
+      - name: sh-node-helloworld
+        image: public.ecr.aws/aaaa/sh_node_helloworld:latest
+        # resources:
+        #   limits:
+        #     memory: "128Mi"
+        #     cpu: "500m"
+        ports:
+        - containerPort: 3000
