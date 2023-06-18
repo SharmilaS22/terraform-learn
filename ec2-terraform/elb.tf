@@ -21,11 +21,16 @@
 # #   }
 # }
 
+
+# Target group vs Auto scaling group
+# https://stackoverflow.com/a/53322509
+# https://stackoverflow.com/a/52364066
+
 resource "aws_lb" "sh_lb" {
   name               = "sharmi-lb-asg"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.sh_sg.id]
+  security_groups    = [aws_security_group.sh_sg_for_elb]
   subnets            = [aws_subnet.sh_subnet_1.id, aws_subnet.sh_subnet_1a.id]
   depends_on         = [aws_internet_gateway.sh_gw]
 }
