@@ -1,26 +1,3 @@
-# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener
-
-# resource "aws_elb" "sh_elb" {
-#   name = "sharmi-elb-asg"
-#   internal           = false
-
-# #   security_groups = ["${aws_security_group.elb.id}"]
-# #   availability_zones = ["${data.aws_availability_zones.all.names}"]
-# #   health_check {
-# #     healthy_threshold = 2
-# #     unhealthy_threshold = 2
-# #     timeout = 3
-# #     interval = 30
-# #     target = "HTTP:8080/"
-# #   }
-# #   listener {
-# #     lb_port = 80
-# #     lb_protocol = "http"
-# #     instance_port = "8080"
-# #     instance_protocol = "http"
-# #   }
-# }
-
 
 # Target group vs Auto scaling group
 # https://stackoverflow.com/a/53322509
@@ -30,7 +7,7 @@ resource "aws_lb" "sh_lb" {
   name               = "sharmi-lb-asg"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.sh_sg_for_elb]
+  security_groups    = [aws_security_group.sh_sg_for_elb.id]
   subnets            = [aws_subnet.sh_subnet_1.id, aws_subnet.sh_subnet_1a.id]
   depends_on         = [aws_internet_gateway.sh_gw]
 }

@@ -12,8 +12,10 @@ resource "aws_launch_template" "sh_ec2_launch_templ" {
   image_id      = "ami-00c39f71452c08778" #specific for each region
   instance_type = "t2.micro"
   user_data     = filebase64("user_data.sh")
-  # key_name = "sharmi-kp"
+
   network_interfaces {
+    associate_public_ip_address = false
+    subnet_id                   = aws_subnet.sh_subnet_2.id
     security_groups             = [aws_security_group.sh_sg_for_ec2.id]
   }
   tag_specifications {
@@ -43,3 +45,7 @@ resource "aws_autoscaling_group" "sh_asg" {
     version = "$Latest"
   }
 }
+
+# 502 error when instance is in private subnet w/ nat gateway
+# https://stackoverflow.com/a/53861750
+# 502 - Probably Apache/Server not running b/c it’s not installed because there's no nat gw or method to install software.

@@ -3,7 +3,7 @@ resource "aws_security_group" "sh_sg_for_elb" {
   name   = "sharmi-sg_for_elb"
   vpc_id = aws_vpc.sh_main.id
 
-  # allow only ssh http(80) and https(443)
+  # allow only http(80) and https(443)
   dynamic "ingress" {
     for_each = var.sg_ports_for_internet
     content {
@@ -22,18 +22,6 @@ resource "aws_security_group" "sh_sg_for_elb" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  # create another sg for instance with only ssh
-
-  # 22 - SSH, 80 - HTTP, 443 - HTTPS
-  #   ingress {
-  #     description      = "Allow https request from anywhere"
-  #     protocol         = "tcp"
-  #     from_port        = 80 # range of 
-  #     to_port          = 80 # port numbers
-  #     cidr_blocks      = ["0.0.0.0/0"]
-  #     ipv6_cidr_blocks = ["::/0"]
-  #   }
-  # egress {}
 
 }
 
@@ -41,9 +29,8 @@ resource "aws_security_group" "sh_sg_for_ec2" {
   name   = "sharmi-sg_for_ec2"
   vpc_id = aws_vpc.sh_main.id
 
-  # 22 - SSH, 80 - HTTP, 443 - HTTPS
   ingress {
-    description     = "Allow https request from Load Balancer"
+    description     = "Allow http request from Load Balancer"
     protocol        = "tcp"
     from_port       = 80 # range of
     to_port         = 80 # port numbers
@@ -57,14 +44,3 @@ resource "aws_security_group" "sh_sg_for_ec2" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
-
-#   dynamic "ingress" {
-#     for_each = var.sg_ports
-#     content {
-#       from_port = ingress.value
-#       to_port = ingress.value
-#       protocol = "tcp"
-#       cidr_blocks = [
-#         "0.0.0.0/0"]
-#     }
-#   }
