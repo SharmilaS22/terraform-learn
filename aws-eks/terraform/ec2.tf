@@ -5,7 +5,7 @@ resource "aws_launch_template" "sh_ec2_launch_templ" {
   #   key_name = "sharmi-kp"
   network_interfaces {
     associate_public_ip_address = true
-    security_groups             = [aws_security_group.sh_sg.id]
+    security_groups             = [aws_security_group.sh_sg.id] //change TODO
   }
   # vpc_security_group_ids = [aws_security_group.sh_sg.id]
 

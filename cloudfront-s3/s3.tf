@@ -30,8 +30,8 @@ resource "aws_s3_bucket_policy" "sh_bucket_policy" {
 resource "aws_s3_bucket_public_access_block" "mybucket" {
   bucket = aws_s3_bucket.sh_s3_bucket.id
 
-  block_public_acls       = true
-  block_public_policy     = true
+  block_public_acls   = true
+  block_public_policy = true
   //ignore_public_acls      = true
   //restrict_public_buckets = true
 }

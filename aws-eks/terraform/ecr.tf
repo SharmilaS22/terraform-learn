@@ -14,7 +14,7 @@
 resource "aws_ecrpublic_repository" "sh_ecr" {
   repository_name = "sh_node_helloworld"
 
-# # optional
+  # # optional
   # catalog_data {
   #   about_text        = "About Text"
   #   architectures     = ["ARM"]
